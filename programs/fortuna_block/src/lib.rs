@@ -21,6 +21,6 @@ pub mod fortuna_block {
         end_time: u64,
         ticket_price: u64,
     ) -> Result<()> {
-        initialize::initialize_lottery(ctx, start_time, end_time, ticket_price)
+        initialize_config::initialize_config(ctx, start_time, end_time, ticket_price)
     }
 }
