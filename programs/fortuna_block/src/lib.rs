@@ -16,7 +16,7 @@ pub mod fortuna_block {
     use super::*;
 
     pub fn initialize(
-        ctx: Context<InitializeLottery>,
+        ctx: Context<InitializeConfig>,
         start_time: u64,
         end_time: u64,
         ticket_price: u64,

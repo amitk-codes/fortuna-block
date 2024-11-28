@@ -3,7 +3,7 @@ use anchor_lang::prelude::*;
 use crate::state::TokenLottery;
 
 pub fn initialize_config(
-    ctx: Context<InitializeLottery>,
+    ctx: Context<InitializeConfig>,
     start_time: u64,
     end_time: u64,
     ticket_price: u64,
@@ -22,7 +22,7 @@ pub fn initialize_config(
 }
 
 #[derive(Accounts)]
-pub struct InitializeLottery<'info> {
+pub struct InitializeConfig<'info> {
     #[account(mut)]
     pub authority: Signer<'info>,
 
