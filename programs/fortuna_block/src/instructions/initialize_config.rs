@@ -29,7 +29,7 @@ pub struct InitializeLottery<'info> {
     #[account(
         init,
         payer = authority,
-        space = 8 + TokenLottery::INIT_SPACE, 
+        space = 8 + TokenLottery::INIT_SPACE,
         seeds = [b"token_lottery".as_ref()],
         bump
     )]
