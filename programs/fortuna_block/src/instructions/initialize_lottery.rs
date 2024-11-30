@@ -2,9 +2,9 @@ use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
     metadata::{
-        create_metadata_accounts_v3,
+        create_master_edition_v3, create_metadata_accounts_v3,
         mpl_token_metadata::types::{CollectionDetails, Creator, DataV2},
-        CreateMetadataAccountsV3, Metadata,
+        CreateMasterEditionV3, CreateMetadataAccountsV3, Metadata,
     },
     token::{mint_to, MintTo},
     token_interface::{Mint, TokenAccount, TokenInterface},
@@ -62,6 +62,27 @@ pub fn initialize_lottery(ctx: Context<InitializeLottery>) -> Result<()> {
         true,
         true,
         Some(CollectionDetails::V1 { size: 0 }),
+    )?;
+
+    msg!("Creating the master edition");
+
+    create_master_edition_v3(
+        CpiContext::new_with_signer(
+            ctx.accounts.token_metadata_program.to_account_info(),
+            CreateMasterEditionV3 {
+                edition: ctx.accounts.master_edition.to_account_info(),
+                mint: ctx.accounts.collection_mint.to_account_info(),
+                update_authority: ctx.accounts.collection_mint.to_account_info(),
+                mint_authority: ctx.accounts.collection_mint.to_account_info(),
+                payer: ctx.accounts.authority.to_account_info(),
+                metadata: ctx.accounts.metadata.to_account_info(),
+                token_program: ctx.accounts.token_program.to_account_info(),
+                system_program: ctx.accounts.system_program.to_account_info(),
+                rent: ctx.accounts.rent.to_account_info(),
+            },
+            signer_seeds,
+        ),
+        Some(0),
     )?;
 
     Ok(())
