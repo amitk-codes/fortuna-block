@@ -12,7 +12,7 @@ use anchor_spl::{
 
 use crate::{NAME, SYMBOL, URI};
 
-pub fn initialize_lottery(ctx: Context<InitializeLottery>) -> Result<()> {
+pub fn initialize_lottery_handler(ctx: Context<InitializeLottery>) -> Result<()> {
     let signer_seeds: &[&[&[u8]]] = &[&[b"collection_mint".as_ref(), &[ctx.bumps.collection_mint]]];
 
     msg!("Creating mint accounts");

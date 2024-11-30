@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 
 use crate::state::TokenLottery;
 
-pub fn initialize_config(
+pub fn initialize_config_handler(
     ctx: Context<InitializeConfig>,
     start_time: u64,
     end_time: u64,
