@@ -24,9 +24,7 @@ pub mod fortuna_block {
         initialize_config::initialize_config_handler(ctx, start_time, end_time, ticket_price)
     }
 
-    pub fn initialize_lottery_accounts(
-        ctx: Context<InitializeLottery>
-    ) -> Result<()>{
+    pub fn initialize_lottery_accounts(ctx: Context<InitializeLottery>) -> Result<()> {
         initialize_lottery::initialize_lottery_handler(ctx)
     }
 }
